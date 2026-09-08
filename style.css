@@ -1,0 +1,219 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --red: #d40000;
+  --dark-red: #8f0000;
+  --gold: #ffc400;
+  --cream: #fffaf0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(255, 210, 0, .22), transparent 28%),
+    radial-gradient(circle at 15% 85%, rgba(255, 255, 255, .08), transparent 25%),
+    linear-gradient(135deg, #a90000, #e00000 48%, #a90000);
+  color: var(--cream);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.14) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: .25;
+  animation: backgroundMove 12s linear infinite;
+}
+
+.thank-you-card {
+  position: relative;
+  width: min(92%, 760px);
+  padding: 42px 55px 48px;
+  text-align: center;
+  border: 2px solid rgba(255, 196, 0, .65);
+  border-radius: 28px;
+  background: rgba(120, 0, 0, .55);
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, .38),
+    inset 0 0 50px rgba(255, 196, 0, .06);
+  backdrop-filter: blur(8px);
+  animation: cardIn 1s cubic-bezier(.2,.8,.2,1);
+}
+
+.logo-wrap {
+  width: 250px;
+  height: 115px;
+  margin: 0 auto 20px;
+  overflow: hidden;
+  border-radius: 15px;
+  background: #d40000;
+  box-shadow: 0 8px 30px rgba(0,0,0,.25);
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+.logo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.divider {
+  width: 120px;
+  height: 3px;
+  margin: 18px auto 22px;
+  background: var(--gold);
+  border-radius: 20px;
+  box-shadow: 0 0 16px rgba(255, 196, 0, .8);
+}
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 13px;
+  animation: fadeUp 1s .35s both;
+}
+
+h1 {
+  font-size: clamp(32px, 5vw, 55px);
+  line-height: 1.1;
+  margin-bottom: 22px;
+  text-shadow: 0 4px 20px rgba(0,0,0,.25);
+  animation: fadeUp 1s .5s both;
+}
+
+h1 span {
+  color: var(--gold);
+  display: inline-block;
+  animation: glow 2.2s ease-in-out infinite;
+}
+
+.message {
+  max-width: 620px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #fff4e0;
+  animation: fadeUp 1s .7s both;
+}
+
+.heart {
+  margin: 20px auto 8px;
+  font-size: 32px;
+  color: #ffcf00;
+  animation: heartbeat 1.3s infinite;
+}
+
+.closing {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  opacity: .9;
+  animation: fadeUp 1s .9s both;
+}
+
+.closing strong {
+  color: var(--gold);
+}
+
+button {
+  margin-top: 25px;
+  border: 0;
+  padding: 13px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  color: #7d0000;
+  background: linear-gradient(135deg, #ffd83d, #ffb700);
+  box-shadow: 0 8px 25px rgba(0,0,0,.25);
+  transition: .25s ease;
+  animation: fadeUp 1s 1s both;
+}
+
+button:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 12px 30px rgba(0,0,0,.32);
+}
+
+.confetti-piece {
+  position: fixed;
+  top: -20px;
+  width: 9px;
+  height: 15px;
+  pointer-events: none;
+  z-index: 10;
+  animation: confettiFall 2.8s linear forwards;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(45px) scale(.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.25); }
+  30% { transform: scale(1); }
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 5px rgba(255,196,0,.2); }
+  50% { text-shadow: 0 0 24px rgba(255,196,0,.8); }
+}
+
+@keyframes backgroundMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(22px); }
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translate3d(var(--x), 105vh, 0) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .thank-you-card {
+    padding: 30px 22px 35px;
+    border-radius: 22px;
+  }
+
+  .logo-wrap {
+    width: 210px;
+    height: 96px;
+  }
+
+  .message {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+}
